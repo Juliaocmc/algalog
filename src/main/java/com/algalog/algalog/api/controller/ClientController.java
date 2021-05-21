@@ -5,7 +5,8 @@ import java.util.List;
 import javax.validation.Valid;
 
 import com.algalog.algalog.api.domain.model.Cliente;
-import com.algalog.algalog.api.domain.repository.CienteRepository;
+import com.algalog.algalog.api.domain.repository.ClienteRepository;
+import com.algalog.algalog.api.domain.service.CatalagoClienteService;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,8 +28,9 @@ import lombok.AllArgsConstructor;
 @RequestMapping("/clientes")
 public class ClientController {
     
-    private CienteRepository clienteRepository;
-
+    private ClienteRepository clienteRepository;
+    private CatalagoClienteService catalagoClienteService;
+    
     @GetMapping
     public List<Cliente> lista(){
         return clienteRepository.findAll();
@@ -44,7 +46,7 @@ public class ClientController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Cliente adicionar(@Validated @RequestBody Cliente cliente){
-        return clienteRepository.save(cliente);
+        return catalagoClienteService.salvar(cliente);
     }
 
     @PutMapping("/{clienteId}")
@@ -55,7 +57,7 @@ public class ClientController {
         }
 
         cliente.setId(clienteId);
-        cliente = clienteRepository.save(cliente);
+        cliente = catalagoClienteService.salvar(cliente);
 
         return ResponseEntity.ok(cliente);
     }
@@ -66,7 +68,7 @@ public class ClientController {
             return ResponseEntity.notFound().build();
         }
 
-        clienteRepository.deleteById(clienteId);
+        catalagoClienteService.exclui(clienteId);
         
         return ResponseEntity.noContent().build();
 

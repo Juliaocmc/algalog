@@ -11,7 +11,7 @@ import javax.validation.constraints.Size;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-//teste
+
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Getter
 @Setter
