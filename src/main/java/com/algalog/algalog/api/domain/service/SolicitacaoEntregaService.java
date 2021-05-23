@@ -1,12 +1,10 @@
 package com.algalog.algalog.api.domain.service;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
-import com.algalog.algalog.api.domain.exception.NegocioException;
 import com.algalog.algalog.api.domain.model.Cliente;
 import com.algalog.algalog.api.domain.model.Entrega;
 import com.algalog.algalog.api.domain.model.StatusEntrega;
-import com.algalog.algalog.api.domain.repository.ClienteRepository;
 import com.algalog.algalog.api.domain.repository.EntregaRepository;
 
 import org.springframework.stereotype.Service;
@@ -27,7 +25,7 @@ public class SolicitacaoEntregaService {
 
         entrega.setCliente(cliente);
         entrega.setStatus(StatusEntrega.PENDETE);
-        entrega.setDataPedido(LocalDateTime.now());
+        entrega.setDataPedido(OffsetDateTime.now());
 
         return entregaRepository.save(entrega);
     }

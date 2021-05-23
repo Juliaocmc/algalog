@@ -2,7 +2,6 @@ package com.algalog.algalog.api.controller;
 
 import java.util.List;
 
-import javax.validation.Valid;
 
 import com.algalog.algalog.api.domain.model.Cliente;
 import com.algalog.algalog.api.domain.repository.ClienteRepository;
